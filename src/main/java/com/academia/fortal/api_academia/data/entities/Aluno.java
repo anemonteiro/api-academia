@@ -3,6 +3,7 @@ package com.academia.fortal.api_academia.data.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -17,8 +18,11 @@ public class Aluno {
     @Column(nullable = false)
     private String nome;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
+
     private String telefone;
-    private Date nascimento;
+
+    @Temporal(TemporalType.DATE)
+    private LocalDate nascimento;
 }

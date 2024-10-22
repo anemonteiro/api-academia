@@ -3,10 +3,11 @@ package com.academia.fortal.api_academia.data.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
-@Table(name = "alunos")
+@Table(name = "membros")
 @Data
 public class Membros {
 
@@ -20,15 +21,13 @@ public class Membros {
 
     @ManyToOne
     @JoinColumn(name = "plano_aula_id", nullable = false)
-    private PlanoDeAulas planoDeAulas;
+    private PlanoDeAula planoDeAula;
 
-    //usar YYYY-MM-DD quando for consumir
     @Column(name = "data_inicio")
     @Temporal(TemporalType.DATE)
-    private Date dataInicio;
+    private LocalDate dataInicio;
 
-    //usar YYYY-MM-DD quando for consumir
     @Column(name = "data_fim")
     @Temporal(TemporalType.DATE)
-    private Date dataFim;
+    private LocalDate dataFim;
 }
