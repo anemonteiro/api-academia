@@ -17,11 +17,8 @@ public class AlunoService {
 
     public AlunoDTO salvar(AlunoDTO aluno){
 
-        //convertendo o AlunoDTO para Aluno
         var entity = DozerConverter.parseObject(aluno, Aluno.class);
-        //Recebendo o retorno do save (aluno)
-        var entityDTO = alunoRepository.save(entity);
-        //Converte e retorna o Aluno em AlunoDTO
+        Aluno entityDTO = alunoRepository.save(entity);
         return DozerConverter.parseObject(entityDTO, AlunoDTO.class);
     }
 
