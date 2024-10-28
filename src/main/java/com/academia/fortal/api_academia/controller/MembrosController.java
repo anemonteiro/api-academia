@@ -24,7 +24,10 @@ public class MembrosController {
         return membrosService.findAll();
     }
 
-    @PutMapping
+    @GetMapping("/{id}")
+    public MembrosDTO findById(@PathVariable Long id){return membrosService.findById(id);}
+
+    @PutMapping("/edit")
     public MembrosDTO editar(@RequestBody MembrosDTO membros){
         return membrosService.salvar(membros);
     }

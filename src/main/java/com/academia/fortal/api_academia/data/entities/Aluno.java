@@ -24,5 +24,6 @@ public class Aluno {
     private String telefone;
 
     @Temporal(TemporalType.DATE)
+    //formato da data: yyyy-mm-dd
     private LocalDate nascimento;
 }

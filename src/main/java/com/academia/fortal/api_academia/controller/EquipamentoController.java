@@ -1,6 +1,5 @@
 package com.academia.fortal.api_academia.controller;
 
-
 import com.academia.fortal.api_academia.data.dto.EquipamentoDTO;
 import com.academia.fortal.api_academia.service.EquipamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,10 @@ public class EquipamentoController {
         return equipamentoService.findAll();
     }
 
-    @PutMapping
+    @GetMapping("/{id}")
+    public EquipamentoDTO findById(@PathVariable Long id){return equipamentoService.findById(id);}
+
+    @PutMapping("/edit")
     public EquipamentoDTO editar(@RequestBody EquipamentoDTO equipamento){
         return equipamentoService.salvar(equipamento);
     }
