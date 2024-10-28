@@ -24,7 +24,10 @@ public class AlunoController {
         return alunoService.findAll();
     }
 
-    @PutMapping
+    @GetMapping("/{id}")
+    public AlunoDTO findById(@PathVariable Long id){return alunoService.findById(id);}
+
+    @PutMapping("/edit")
     public AlunoDTO editar(@RequestBody AlunoDTO aluno){
         return alunoService.salvar(aluno);
     }
