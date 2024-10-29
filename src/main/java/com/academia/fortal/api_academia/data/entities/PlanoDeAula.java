@@ -11,7 +11,7 @@ import java.util.List;
 public class PlanoDeAula {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
@@ -20,6 +20,6 @@ public class PlanoDeAula {
 
     private Float duracao;
 
-    @OneToMany(mappedBy = "planoDeAula")
+    @OneToMany(mappedBy = "membros")
     private List<Membros> membros;
 }

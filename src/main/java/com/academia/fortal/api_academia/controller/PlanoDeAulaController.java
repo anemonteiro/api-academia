@@ -27,7 +27,7 @@ public class PlanoDeAulaController {
     @GetMapping("/{id}")
     public PlanoDeAulaDTO findById(@PathVariable Long id){return planoDeAulaService.findById(id);}
 
-    @PutMapping
+    @PutMapping("/edit")
     public PlanoDeAulaDTO editar(@RequestBody PlanoDeAulaDTO planoDeAula){
         return planoDeAulaService.salvar(planoDeAula);
     }

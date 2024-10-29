@@ -27,7 +27,7 @@ public class TreinoController {
     @GetMapping("/{id}")
     public TreinoDTO findById(@PathVariable Long id){return treinoService.findById(id);}
 
-    @PutMapping
+    @PutMapping("/edit")
     public TreinoDTO editar(@RequestBody TreinoDTO treino){
         return treinoService.salvar(treino);
     }
