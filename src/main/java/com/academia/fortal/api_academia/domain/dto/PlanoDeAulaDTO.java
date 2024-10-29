@@ -11,6 +11,5 @@ public class PlanoDeAulaDTO {
     private String nome;
     private String descricao;
     private Float duracao;
-    private List<Membros> membros;
-
+    private String nivel;
 }

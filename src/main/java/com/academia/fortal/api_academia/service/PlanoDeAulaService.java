@@ -16,10 +16,9 @@ public class PlanoDeAulaService {
     private PlanoDeAulaRepository planoDeAulaRepository;
 
     public PlanoDeAulaDTO salvar(PlanoDeAulaDTO planoDeAula){
-
         var entity = DozerConverter.parseObject(planoDeAula, PlanoDeAula.class);
-        PlanoDeAula entityDTO = planoDeAulaRepository.save(entity);
-        return DozerConverter.parseObject(entityDTO, PlanoDeAulaDTO.class);
+        PlanoDeAula savedPlanoDeAula = planoDeAulaRepository.save(entity);
+        return DozerConverter.parseObject(savedPlanoDeAula, PlanoDeAulaDTO.class);
     }
 
     public List<PlanoDeAulaDTO> findAll(){
@@ -34,5 +33,4 @@ public class PlanoDeAulaService {
     public void delete(Long id){
         planoDeAulaRepository.deleteById(id);
     }
-
 }

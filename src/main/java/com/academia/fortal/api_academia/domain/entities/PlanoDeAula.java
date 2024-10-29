@@ -20,6 +20,5 @@ public class PlanoDeAula {
 
     private Float duracao;
 
-    @OneToMany(mappedBy = "planoDeAula")
-    private List<Membros> membros;
+    private String nivel;
 }

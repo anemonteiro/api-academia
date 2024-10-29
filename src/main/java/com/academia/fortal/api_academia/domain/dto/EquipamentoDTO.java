@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class EquipamentoDTO {
     private Long id;
-    private String name;
+    private String nome;
     private String marca;
     private String status;
     private Integer quantidade;

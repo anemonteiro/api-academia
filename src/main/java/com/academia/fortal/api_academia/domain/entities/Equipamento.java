@@ -14,7 +14,7 @@ public class Equipamento {
     private Long id;
 
     @Column(name = "nome_equipamento", nullable = false)
-    private String name;
+    private String nome;
 
     private String marca;
 

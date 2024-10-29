@@ -8,11 +8,10 @@ import com.academia.fortal.api_academia.dozer.DozerConverter;
 import com.academia.fortal.api_academia.repository.AlunoRepository;
 import com.academia.fortal.api_academia.repository.MembrosRepository;
 import com.academia.fortal.api_academia.repository.PlanoDeAulaRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,37 +27,40 @@ public class MembrosService {
     private PlanoDeAulaRepository planoDeAulaRepository;
 
     public MembrosDTO salvar(MembrosDTO membrosDTO) {
-        Membros membros = DozerConverter.parseObject(membrosDTO, Membros.class);
-        membros.setAluno(alunoRepository.findById(membrosDTO.getAlunoId()).orElse(null));
-        membros.setPlanoDeAula(planoDeAulaRepository.findById(membrosDTO.getPlanoDeAulaId()).orElse(null));
+        Aluno aluno = alunoRepository.findById(membrosDTO.getAlunoId()).orElse(null);
+        PlanoDeAula planoDeAula = planoDeAulaRepository.findById(membrosDTO.getPlanoDeAulaId()).orElse(null);
 
-        Membros savedMembros = membrosRepository.save(membros);
-        return DozerConverter.parseObject(savedMembros, MembrosDTO.class);
-    }
+        Membros membro = new Membros();
+        membro.setAluno(aluno);
+        membro.setPlanoDeAula(planoDeAula);
+        membro.setDataInicio(membrosDTO.getDataInicio());
+        membro.setDataFim(membrosDTO.getDataFim());
 
-    public MembrosDTO matricularAluno(Long alunoId, Long planoAulaId, LocalDate dataInicio, LocalDate dataFim) {
-        Aluno aluno = alunoRepository.findById(alunoId)
-                .orElseThrow(() -> new EntityNotFoundException("Aluno não encontrado"));
-        PlanoDeAula planoAula = planoDeAulaRepository.findById(planoAulaId)
-                .orElseThrow(() -> new EntityNotFoundException("Plano de aula não encontrado"));
+        Membros savedMembros = membrosRepository.save(membro);
 
-        Membros membros = new Membros();
-        membros.setAluno(aluno);
-        membros.setPlanoDeAula(planoAula);
-        membros.setDataInicio(dataInicio);
-        membros.setDataFim(dataFim);
+        membrosDTO.setId(savedMembros.getId());
+        membrosDTO.setAlunoId(savedMembros.getAluno() != null ? savedMembros.getAluno().getId() : null);
+        membrosDTO.setPlanoDeAulaId(savedMembros.getPlanoDeAula() != null ? savedMembros.getPlanoDeAula().getId() : null);
 
-        Membros savedMembros = membrosRepository.save(membros);
-        return DozerConverter.parseObject(savedMembros, MembrosDTO.class);
+        return membrosDTO;
     }
 
     public List<MembrosDTO> findAll() {
-        return DozerConverter.parseListObjects(membrosRepository.findAll(), MembrosDTO.class);
+        List<Membros> membrosList = membrosRepository.findAll();
+        List<MembrosDTO> membrosDTOList = new ArrayList<>();
+
+        for (Membros membro : membrosList) {
+            MembrosDTO dto = DozerConverter.parseObject(membro, MembrosDTO.class);
+            dto.setAlunoId(membro.getAluno() != null ? membro.getAluno().getId() : null);
+            dto.setPlanoDeAulaId(membro.getPlanoDeAula() != null ? membro.getPlanoDeAula().getId() : null);
+            membrosDTOList.add(dto);
+        }
+
+        return membrosDTOList;
     }
 
     public MembrosDTO findById(Long id) {
-        Membros membros = membrosRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Membros não encontrado"));
+        Membros membros = membrosRepository.findById(id).orElse(null);
         return DozerConverter.parseObject(membros, MembrosDTO.class);
     }
 
