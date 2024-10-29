@@ -1,4 +1,4 @@
-package com.academia.fortal.api_academia.data.dto;
+package com.academia.fortal.api_academia.domain.dto;
 
 import lombok.Data;
 

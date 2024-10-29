@@ -1,6 +1,6 @@
 package com.academia.fortal.api_academia.controller;
 
-import com.academia.fortal.api_academia.data.dto.EquipamentoDTO;
+import com.academia.fortal.api_academia.domain.dto.EquipamentoDTO;
 import com.academia.fortal.api_academia.service.EquipamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

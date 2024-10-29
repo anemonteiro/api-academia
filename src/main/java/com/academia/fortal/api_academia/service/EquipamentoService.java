@@ -1,7 +1,7 @@
 package com.academia.fortal.api_academia.service;
 
-import com.academia.fortal.api_academia.data.dto.EquipamentoDTO;
-import com.academia.fortal.api_academia.data.entities.Equipamento;
+import com.academia.fortal.api_academia.domain.dto.EquipamentoDTO;
+import com.academia.fortal.api_academia.domain.entities.Equipamento;
 import com.academia.fortal.api_academia.dozer.DozerConverter;
 import com.academia.fortal.api_academia.repository.EquipamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.academia.fortal.api_academia.data.entities;
+package com.academia.fortal.api_academia.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -20,6 +20,6 @@ public class PlanoDeAula {
 
     private Float duracao;
 
-    @OneToMany(mappedBy = "membros")
+    @OneToMany(mappedBy = "planoDeAula")
     private List<Membros> membros;
 }

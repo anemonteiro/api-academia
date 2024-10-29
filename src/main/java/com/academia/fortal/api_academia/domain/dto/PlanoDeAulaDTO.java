@@ -1,6 +1,6 @@
-package com.academia.fortal.api_academia.data.dto;
+package com.academia.fortal.api_academia.domain.dto;
 
-import com.academia.fortal.api_academia.data.entities.Membros;
+import com.academia.fortal.api_academia.domain.entities.Membros;
 import lombok.Data;
 
 import java.util.List;

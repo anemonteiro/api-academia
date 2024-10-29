@@ -1,4 +1,4 @@
-package com.academia.fortal.api_academia.data.entities;
+package com.academia.fortal.api_academia.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;

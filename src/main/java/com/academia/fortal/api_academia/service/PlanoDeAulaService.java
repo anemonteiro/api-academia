@@ -1,7 +1,7 @@
 package com.academia.fortal.api_academia.service;
 
-import com.academia.fortal.api_academia.data.dto.PlanoDeAulaDTO;
-import com.academia.fortal.api_academia.data.entities.PlanoDeAula;
+import com.academia.fortal.api_academia.domain.dto.PlanoDeAulaDTO;
+import com.academia.fortal.api_academia.domain.entities.PlanoDeAula;
 import com.academia.fortal.api_academia.dozer.DozerConverter;
 import com.academia.fortal.api_academia.repository.PlanoDeAulaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
