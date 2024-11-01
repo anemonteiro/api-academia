@@ -36,4 +36,9 @@ public class EquipamentoController {
     public void delete(@PathVariable Long id){
         equipamentoService.delete(id);
     }
+
+    @PatchMapping("/{id}/status")
+    public EquipamentoDTO atualizarStatus(@PathVariable Long id, @RequestBody String status) {
+        return equipamentoService.atualizarStatus(id, status);
+    }
 }

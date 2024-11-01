@@ -4,6 +4,7 @@ import com.academia.fortal.api_academia.domain.dto.EquipamentoDTO;
 import com.academia.fortal.api_academia.domain.entities.Equipamento;
 import com.academia.fortal.api_academia.dozer.DozerConverter;
 import com.academia.fortal.api_academia.repository.EquipamentoRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,14 @@ public class EquipamentoService {
 
     public void delete(Long id){
         equipamentoRepository.deleteById(id);
+    }
+
+    public EquipamentoDTO atualizarStatus(Long id, String status) {
+        var entity = equipamentoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Equipamento não encontrado"));
+
+        entity.setStatus(status);
+        Equipamento updatedEntity = equipamentoRepository.save(entity);
+        return DozerConverter.parseObject(updatedEntity, EquipamentoDTO.class);
     }
 
 }
