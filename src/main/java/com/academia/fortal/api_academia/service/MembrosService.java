@@ -5,10 +5,12 @@ import com.academia.fortal.api_academia.domain.entities.Aluno;
 import com.academia.fortal.api_academia.domain.entities.Membros;
 import com.academia.fortal.api_academia.domain.entities.PlanoDeAula;
 import com.academia.fortal.api_academia.dozer.DozerConverter;
+import com.academia.fortal.api_academia.exceptions.CommonsException;
 import com.academia.fortal.api_academia.repository.AlunoRepository;
 import com.academia.fortal.api_academia.repository.MembrosRepository;
 import com.academia.fortal.api_academia.repository.PlanoDeAulaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -65,6 +67,11 @@ public class MembrosService {
     }
 
     public void delete(Long id) {
+        if (!membrosRepository.existsById(id)) {
+            throw new CommonsException(HttpStatus.NOT_FOUND,
+                    "academia.fortal.membro.notfound",
+                    "O aluno com o ID informado não foi encontrado, portanto não é membro");
+        }
         membrosRepository.deleteById(id);
     }
 }
