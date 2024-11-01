@@ -23,6 +23,6 @@ public class GlobalExceptionHandler {
         logger.error("Exception não tratada: ", ex);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(new MessageDTO("Exception não tratada: ",
-                        "unichristus.global.handler.exception"));
+                        "academia.fortal.handler.exception"));
     }
 }
